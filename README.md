@@ -9,7 +9,7 @@ Tout d'abord clonez ce repository.
 Une fois ce répository cloné, vous allez devoir écrire quelques lignes de code :
 
 Dans le dossier "backend" :
-=> Depuis le dossier "backend", téléchargez et installez Node.js si cela n'est pas déjà fait.
+=> Depuis le dossier "backend", téléchargez et installez Node.js si cela n'est pas déjà fait avec "npm install".
 => Lancez node, pour cela tapez dans le terminal la commande : "npm start"
 => Lancez le serveur avec la commande "nodemon serve"
 => Le serveur sera accessible sur http://localhost:3000/
