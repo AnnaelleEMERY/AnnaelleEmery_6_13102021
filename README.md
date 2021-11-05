@@ -19,7 +19,6 @@ Dans le dossier "Web-Developer-P6" :
 => Installez node-sass avec "npm install node-sass"
 
 Pour lancer le serveur :
-=> Dans le dossier "Web-Developer-P6", dans le terminal, tapez "npm start" ou "ng serve" et rendez-vous sur l'adresse que vous aura renvoyé votre terminal
-ou, si vous possédez l'extension Live Server (sur Virtual Studio Code), la page devrait s'ouvrir toute seule
+=> Dans le dossier "Web-Developer-P6", dans le terminal, tapez "npm start" ou "ng serve" et rendez-vous sur l'adresse que vous aura renvoyé votre terminal, ou si vous possédez l'extension Live Server (sur Virtual Studio Code), la page devrait s'ouvrir toute seule
 
 L'application va se recharger automatiquement si ous modifiez un fichier source.
