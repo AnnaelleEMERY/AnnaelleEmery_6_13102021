@@ -6,7 +6,7 @@ Pour pouvoir utiliser correctement l'API veuillez suivre les instructions suivan
 
 Tout d'abord clonez ce repository.
 
-Une fois ce répository cloné, vous allez devoir écrire quelques lignes de code :
+Une fois ce repository cloné, vous allez devoir écrire quelques lignes de code :
 
 Dans le dossier "backend" :
 => Depuis le dossier "backend", téléchargez et installez Node.js si cela n'est pas déjà fait avec "npm install".
