@@ -35,10 +35,10 @@ app.use((req, res, next) => {
 });
 
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
-app.use(bodyParser.urlencoded({
+app.use(express.urlencoded({
     extended: true
   }));
 
