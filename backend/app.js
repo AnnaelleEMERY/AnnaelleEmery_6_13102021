@@ -6,6 +6,10 @@ const path = require('path');
 const userRoutes = require('./routes/user'); //accès aux routes user
 const saucesRoutes = require('./routes/sauces'); //accès aux routes des sauces
 
+// Ajouter les variables .env
+require('dotenv').config()
+const db = process.env;
+
 //connexion à la base de donnée
 mongoose.connect('mongodb+srv://AnnaE:CoquilleJ56!!@cluster0.eqcby.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
