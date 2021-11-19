@@ -11,7 +11,7 @@ require('dotenv').config()
 const db = process.env;
 
 //connexion à la base de donnée
-mongoose.connect('mongodb+srv://AnnaE:CoquilleJ56!!@cluster0.eqcby.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + db.DB_USER + ':' + db.DB_PASS + '@' + db.CLUSTER_DB + '/' + db.NAME_DB + '?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
