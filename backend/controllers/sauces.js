@@ -14,6 +14,17 @@ exports.createSauce = (req, res, next) => {
 };
 
 exports.modifySauce = (req, res, next) => {
+    if(req.file) { // Supprimer l'ancienne image s'il en existait déjà une
+        Sauce.findOne({ _id: req.params.id })
+            .then(sauce => {
+                const last_filename = sauce.imageUrl.split('/images/')[1];
+                fs.unlink('images/' + last_filename, () => {});
+            })
+            .catch(error => console.log('Echec de la suppression de l\'ancienne image.'));
+    }
+
+
+
     const sauceObject = req.file ? {
         ...JSON.parse(req.body.sauce),
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
