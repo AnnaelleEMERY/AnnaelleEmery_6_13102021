@@ -4,6 +4,7 @@ const mongoose = require('mongoose'); // base de donnée
 const helmet = require('helmet'); //pour une meilleure sécurité des cookies
 const session = require('cookie-session');
 const nocache = require('nocache');
+const rateLimit = require("express-rate-limit"); // contre les attaques de brute force
 
 // On donne accès au chemin de notre système de fichier
 const path = require('path');
@@ -17,21 +18,21 @@ const db = process.env;
 
 //connexion à la base de donnée
 mongoose.connect('mongodb+srv://' + db.DB_USER + ':' + db.DB_PASS + '@' + db.CLUSTER_DB + '/' + db.NAME_DB + '?retryWrites=true&w=majority',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    })
-    .then(() => console.log('Connexion à MongoDB réussie !'))
-    .catch(() => console.log('Connexion à MongoDB échouée !'));
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 // activer express
 const app = express();
 
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-    next();
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
 });
 
 // Transforme les données arrivant de la requête POST en un objet JSON facilement exploitable
@@ -39,8 +40,8 @@ app.use(express.json());
 
 // Middleware qui permet de parser les requêtes envoyées par le client, on peut y accéder grâce à req.body
 app.use(express.urlencoded({
-    extended: true
-  }));
+  extended: true
+}));
 
 // utilisation du module 'helmet' pour la sécurité en protégeant l'application de certaines vulnérabilités
 // sécurise : 
@@ -59,6 +60,13 @@ app.use(session({
     expires: expiryDate
   }
 }));
+
+app.use(rateLimit({
+  windowMs: 12 * 60 * 1000, // 15 minutes en millisecondes
+  max: 100,
+  message: "Vous avez excédé les 100 requêtes en 15 minutes !"
+})
+);
 
 //Désactive la mise en cache du navigateur
 app.use(nocache());
